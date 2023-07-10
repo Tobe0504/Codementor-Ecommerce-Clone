@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { StaticImageData } from "next/image";
+import { useEffect, useState } from "react";
 import Layout from "../Components/Layout/Layout";
-import classes from "./women.module.css";
 import imageProduct1 from "../../public/Images/image-product-1.jpg";
 import imageProduct2 from "../../public/Images/image-product-2.jpg";
 import imageProduct3 from "../../public/Images/image-product-3.jpg";
@@ -12,27 +10,31 @@ import imageProduct1Thumbnail from "../../public/Images/image-product-1-thumbnai
 import imageProduct2Thumbnail from "../../public/Images/image-product-2-thumbnail.jpg";
 import imageProduct3Thumbnail from "../../public/Images/image-product-3-thumbnail.jpg";
 import imageProduct4Thumbnail from "../../public/Images/image-product-4-thumbnail.jpg";
-import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import Women from "./women";
+import { StaticImageData } from "next/dist/shared/lib/get-img-props";
+import Modal from "../Components/Modal/Modal";
 
 type WomenStateType = {};
 
-const Women = () => {
+const WomenContainer = () => {
   // Utilities
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [orderCount, setOrderCount] = useState<number>(0);
+  const [showImagesModal, setShowImagesModal] = useState<boolean>(false);
+
   const [women, setWomen] = useState<
-    | {
-        companyName: string;
-        productName: string;
-        description: string;
-        initialPrice: string;
-        discountedPrice: string;
-        images: {
-          imageUrl: StaticImageData;
-          thumbnail: StaticImageData;
-          isActive: boolean;
-        }[];
-        amountOrdered: number;
-      }[]
+    {
+      companyName: string;
+      productName: string;
+      description: string;
+      initialPrice: string;
+      discountedPrice: string;
+      images: {
+        imageUrl: StaticImageData;
+        thumbnail: StaticImageData;
+        isActive: boolean;
+      }[];
+    }[]
   >([
     {
       companyName: "Sneaker Company",
@@ -63,39 +65,43 @@ const Women = () => {
           isActive: false,
         },
       ],
-      amountOrdered: 0,
     },
   ]);
 
-  const activeImage = women.map((product) => {
-    return product.images.find((data) => {
-      return data.isActive;
-    })?.imageUrl;
-  })[0];
+  const activeImage = women[0].images.find((image) => image.isActive);
+
+  const activeImageUrl = activeImage?.imageUrl;
+
+  useEffect(() => {
+    if (activeIndex === -1) {
+      setActiveIndex(women[0].images.length);
+    } else if (activeIndex === women[0].images.length) {
+      setActiveIndex(0);
+    }
+
+    console.log(activeIndex, women[0].images.length - 1);
+  }, [activeIndex, women]);
+
+  useEffect(() => {
+    if (orderCount === -1) {
+      setOrderCount(0);
+    }
+  }, [orderCount]);
 
   return (
-    <Layout>
-      <div className={classes.container}>
-        <div className={classes.imageSection}>
-          <div className={classes.activeImage}>
-            <Image src={activeImage} alt="Active Image" />
-          </div>
-          <div className={classes.imageThumbnailSection}>
-            {women.map((image) => {
-              return image.images.map((data, j) => {
-                return (
-                  <div className={classes.thumbNail} key={j}>
-                    <Image src={data.thumbnail} alt={image.productName} />
-                  </div>
-                );
-              });
-            })}
-          </div>
-        </div>
-        <div></div>
-      </div>
-    </Layout>
+    <div>
+      <Women
+        women={women}
+        setWomen={setWomen}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+        orderCount={orderCount}
+        setOrderCount={setOrderCount}
+        showImagesModal={showImagesModal}
+        setShowImagesModal={setShowImagesModal}
+      />
+    </div>
   );
 };
 
-export default Women;
+export default WomenContainer;

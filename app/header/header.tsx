@@ -21,7 +21,7 @@ const Header = () => {
 
   const openSideNav = (): void => {
     const sideNav: HTMLElement | null = document.getElementById("sideNav");
-    if (sideNav) sideNav.style.width = "50%";
+    if (sideNav) sideNav.style.width = "70%";
   };
 
   const closeNav = (): void => {
