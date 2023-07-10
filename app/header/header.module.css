@@ -1,0 +1,161 @@
+.container {
+  height: 10vh;
+  padding: 0 10.25rem;
+  display: flex;
+  align-items: stretch;
+  gap: 58px;
+}
+
+.logoSection {
+  color: #000;
+  letter-spacing: 1.24px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logoSection > svg {
+  display: none;
+}
+
+.logoSection > p {
+  padding: 0;
+  font-family: "Outfit";
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.nav {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  color: #68707d;
+  font-family: Kumbh Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.nav > div {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.active {
+  color: #1d2025;
+  font-family: Kumbh Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  border-bottom: 4px solid #ff7d1a;
+  transition: all 0.3s ease-in-out;
+}
+
+.profileAndNav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.profileImage {
+  width: 50px;
+  height: 50px;
+}
+
+.close {
+  padding: 24px;
+}
+
+.sideNav {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  width: 0;
+  background-color: #ffffff;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.navLinks {
+  margin-top: 3rem;
+  padding: 0 24px;
+}
+
+.navLinks > a {
+  display: block;
+  color: #1d2025;
+  font-family: Kumbh Sans;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.51px;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1023px) {
+  .container {
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .logoSection > svg {
+    display: block;
+  }
+
+  .profileAndNav {
+    gap: 22px;
+  }
+
+  .profileImage {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart {
+    width: 21px;
+    height: 19.091px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .logoSection > svg {
+    display: block;
+  }
+
+  .profileAndNav {
+    gap: 22px;
+  }
+
+  .profileImage {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart {
+    width: 21px;
+    height: 19.091px;
+  }
+}
