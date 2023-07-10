@@ -56,17 +56,18 @@ const Modal = ({
           <div className={classes.imageSection}>
             <div className={classes.activeImage}>
               <div className={classes.mobilePictureNav}>
-                <div>
+                <div
+                  onClick={() => {
+                    setActiveIndex((prevState) => prevState - 1);
+                    setActiveImageHandler(activeIndex);
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="9"
                     height="14"
                     viewBox="0 0 9 14"
                     fill="none"
-                    onClick={() => {
-                      setActiveIndex((prevState) => prevState - 1);
-                      setActiveImageHandler(activeIndex);
-                    }}
                   >
                     <g clipPath="url(#clip0_10_110)">
                       <path
@@ -82,17 +83,18 @@ const Modal = ({
                     </defs>
                   </svg>
                 </div>
-                <div>
+                <div
+                  onClick={() => {
+                    setActiveIndex((prevState) => prevState + 1);
+                    setActiveImageHandler(activeIndex);
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="9"
                     height="14"
                     viewBox="0 0 9 14"
                     fill="none"
-                    onClick={() => {
-                      setActiveIndex((prevState) => prevState + 1);
-                      setActiveImageHandler(activeIndex);
-                    }}
                   >
                     <g clipPath="url(#clip0_10_115)">
                       <path
