@@ -19,10 +19,12 @@
 .activeImage {
   width: 445px;
   height: 445px;
+  cursor: pointer;
 }
 
 .imageSection {
   position: relative;
+  user-select: none;
 }
 
 .mobilePictureNav {

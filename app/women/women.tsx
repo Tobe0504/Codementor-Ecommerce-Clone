@@ -44,6 +44,7 @@ export type WomenProps = {
   activeImageUrl?: StaticImageData | undefined;
   showImagesModal?: boolean;
   setShowImagesModal: Dispatch<SetStateAction<boolean>>;
+  setDisplayCart: Dispatch<SetStateAction<boolean>>;
 };
 
 const Women = ({
@@ -55,6 +56,7 @@ const Women = ({
   setOrderCount,
   showImagesModal,
   setShowImagesModal,
+  setDisplayCart,
 }: WomenProps) => {
   // Context
   const { cart, setCart } = useContext(AppContext);
@@ -103,6 +105,7 @@ const Women = ({
 
   const addToCart = (): void => {
     setCart(women as WomenState[]);
+    setDisplayCart(true);
   };
 
   return (
@@ -119,23 +122,25 @@ const Women = ({
               setOrderCount={setOrderCount}
               activeImageUrl={activeImageUrl}
               setShowImagesModal={setShowImagesModal}
+              setDisplayCart={setDisplayCart}
             />
           </div>
         )}
         <div className={classes.imageSection}>
           <div className={classes.activeImage}>
             <div className={classes.mobilePictureNav}>
-              <div>
+              <div
+                onClick={() => {
+                  setActiveIndex((prevState) => prevState - 1);
+                  setActiveImageHandler(activeIndex);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="9"
                   height="14"
                   viewBox="0 0 9 14"
                   fill="none"
-                  onClick={() => {
-                    setActiveIndex((prevState) => prevState - 1);
-                    setActiveImageHandler(activeIndex);
-                  }}
                 >
                   <g clipPath="url(#clip0_10_110)">
                     <path
@@ -151,17 +156,18 @@ const Women = ({
                   </defs>
                 </svg>
               </div>
-              <div>
+              <div
+                onClick={() => {
+                  setActiveIndex((prevState) => prevState + 1);
+                  setActiveImageHandler(activeIndex);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="9"
                   height="14"
                   viewBox="0 0 9 14"
                   fill="none"
-                  onClick={() => {
-                    setActiveIndex((prevState) => prevState + 1);
-                    setActiveImageHandler(activeIndex);
-                  }}
                 >
                   <g clipPath="url(#clip0_10_115)">
                     <path
@@ -184,7 +190,13 @@ const Women = ({
               </div>
             </div>
             {activeImageUrl && (
-              <Image src={activeImageUrl} alt="Active Image" />
+              <Image
+                src={activeImageUrl}
+                alt="Active Image"
+                onClick={() => {
+                  setShowImagesModal(true);
+                }}
+              />
             )}
           </div>
           <div className={classes.imageThumbnailSection}>
@@ -200,7 +212,6 @@ const Women = ({
                     key={j}
                     onClick={() => {
                       setActiveImageHandler(j);
-                      setShowImagesModal(true);
                     }}
                   >
                     <div></div>

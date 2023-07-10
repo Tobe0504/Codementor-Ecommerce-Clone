@@ -14,10 +14,10 @@ const Header = () => {
   const pathname = usePathname();
 
   // Context
-  const { cart, orderCount, setCart } = useContext(AppContext);
+  const { cart, orderCount, setCart, displayCart, setDisplayCart } =
+    useContext(AppContext);
 
   // State
-  const [displayCart, setDidplayCart] = useState(false);
 
   const navItems: string[] = [
     "Collections",
@@ -94,7 +94,7 @@ const Header = () => {
             fill="none"
             // className={classes.cart}
             onClick={() => {
-              setDidplayCart(!displayCart);
+              setDisplayCart(!displayCart);
             }}
           >
             <g clipPath="url(#clip0_203_427)">
@@ -119,7 +119,7 @@ const Header = () => {
             alt="Avatar"
             className={classes.profileImage}
             onClick={() => {
-              setDidplayCart(!displayCart);
+              setDisplayCart(!displayCart);
             }}
           />
           {displayCart && (

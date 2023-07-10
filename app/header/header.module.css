@@ -62,6 +62,7 @@
   align-items: center;
   gap: 45px;
   position: relative;
+  cursor: pointer;
 }
 
 .cart {

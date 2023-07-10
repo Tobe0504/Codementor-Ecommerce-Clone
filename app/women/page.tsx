@@ -21,7 +21,7 @@ export type WomenState = {
 
 const WomenContainer = () => {
   // Context
-  const { orderCount, setOrderCount } = useContext(AppContext);
+  const { orderCount, setOrderCount, setDisplayCart } = useContext(AppContext);
   // Utilities
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [showImagesModal, setShowImagesModal] = useState<boolean>(false);
@@ -54,6 +54,7 @@ const WomenContainer = () => {
         setOrderCount={setOrderCount}
         showImagesModal={showImagesModal}
         setShowImagesModal={setShowImagesModal}
+        setDisplayCart={setDisplayCart}
       />
     </div>
   );
