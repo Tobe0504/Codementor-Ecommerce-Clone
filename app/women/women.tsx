@@ -1,10 +1,12 @@
 import classes from "./women.module.css";
 import { StaticImageData } from "next/image";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import Layout from "../Components/Layout/Layout";
 import Modal from "../Components/Modal/Modal";
+import { AppContext } from "../context/AppContext";
+import { WomenState } from "./page";
 
 export type WomenProps = {
   women: {
@@ -54,6 +56,9 @@ const Women = ({
   showImagesModal,
   setShowImagesModal,
 }: WomenProps) => {
+  // Context
+  const { cart, setCart } = useContext(AppContext);
+
   const activeImage = women[0].images.find((image) => image.isActive);
 
   const activeImageUrl: undefined | StaticImageData = activeImage?.imageUrl;
@@ -69,7 +74,6 @@ const Women = ({
 
       const updatedWomen = [...prevWomen];
       updatedWomen[0] = { ...prevWomen[0], images: updatedImages };
-      console.log(updatedImages, women);
 
       return updatedWomen;
     });
@@ -81,8 +85,6 @@ const Women = ({
     } else if (activeIndex === women[0].images.length) {
       setActiveIndex(0);
     }
-
-    console.log(activeIndex, women[0].images.length - 1);
   }, [activeIndex, women]);
 
   const increaseOrderedAmount = () => {
@@ -98,6 +100,10 @@ const Women = ({
       setOrderCount(0);
     }
   }, [orderCount]);
+
+  const addToCart = (): void => {
+    setCart(women as WomenState[]);
+  };
 
   return (
     <Layout>
@@ -135,7 +141,7 @@ const Women = ({
                     <path
                       d="M8.25 0.75L2.25 6.75L8.25 12.75"
                       stroke="#1D2026"
-                      stroke-width="3"
+                      strokeWidth="3"
                     />
                   </g>
                   <defs>
@@ -161,7 +167,7 @@ const Women = ({
                     <path
                       d="M0.75 13.25L6.75 7.25L0.75 1.25"
                       stroke="#1D2026"
-                      stroke-width="3"
+                      strokeWidth="3"
                     />
                   </g>
                   <defs>
@@ -240,7 +246,11 @@ const Women = ({
                 +
               </button>
             </div>
-            <button>
+            <button
+              onClick={() => {
+                addToCart();
+              }}
+            >
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

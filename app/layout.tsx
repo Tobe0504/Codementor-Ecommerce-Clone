@@ -1,3 +1,4 @@
+import AppContextProvider from "./context/AppContext";
 import "./globals.css";
 
 export const metadata = {
@@ -20,7 +21,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <AppContextProvider>{children}</AppContextProvider>
+      </body>
     </html>
   );
 }

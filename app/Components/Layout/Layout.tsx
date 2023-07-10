@@ -1,3 +1,4 @@
+import AppContextProvider from "@/app/context/AppContext";
 import Header from "../../header/header";
 import classes from "./Layout.module.css";
 
